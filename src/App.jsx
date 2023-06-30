@@ -1,0 +1,32 @@
+import { Route, Routes } from "react-router-dom";
+import { routes } from "./Routes/utils/routes";
+import Layout from "./Components/Layout";
+import Home from "./Routes/Home";
+import Detail from "./Routes/Detail";
+import Contact from "./Routes/Contact";
+import Favs from "./Routes/Favs";
+
+
+import { useContextGlobal } from "./Components/utils/global.context";
+import NotFound from "./Routes/NotFound";
+
+function App() {
+
+  const {dataState} = useContextGlobal()
+  return (
+      <div className={"App " + dataState.theme}>
+        
+        <Routes>
+          <Route path="/" element={<Layout/>}>
+            <Route path={routes.home} element={<Home/>}/>
+            <Route path={routes.dentist} element={<Detail/>}/>
+            <Route path={routes.contact} element={<Contact/>}/>
+            <Route path={routes.favs} element={<Favs/>}/>
+            <Route path={routes.notFound} element={<NotFound/>}/>
+          </Route>
+        </Routes>
+      </div>
+  );
+}
+
+export default App;
